@@ -18,10 +18,17 @@ class CustomControl: UIControl {
         
         for labels in labelArray {
             if labels.frame.contains(touchPoint){
-                self.value = labels.tag
-                if labels.textColor == componentActiveColor{
-                    return
+                var index = labels.tag
+                while index < labelArray.count {
+                    labelArray[index].textColor = componentInactiveColor
+                    index += 1
                 }
+                var count = 0
+                while count < labels.tag{
+                    labelArray[count].textColor = componentActiveColor
+                    count += 1
+                }
+                self.value = labels.tag
                 labels.textColor = componentActiveColor
                 sendActions(for: .valueChanged)
             }
