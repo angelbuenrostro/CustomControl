@@ -18,7 +18,12 @@ class CustomControl: UIControl {
         
         for labels in labelArray {
             if labels.frame.contains(touchPoint){
-                
+                self.value = labels.tag
+                if labels.textColor == componentActiveColor{
+                    return
+                }
+                labels.textColor = componentActiveColor
+                sendActions(for: .valueChanged)
             }
         }
     }
